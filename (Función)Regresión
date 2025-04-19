@@ -1,0 +1,41 @@
+Afortunadamente, no tenemos que hacer esto cada vez que queremos usar la regresión lineal. Podemos usar la biblioteca scikit-learn de Pythonytos. Scikit-learn, o sklearn, se utiliza específicamente para ML
+Dentro del linear_model módulo, hay un LinearRegression() función que podemos usar:
+
+IMPORTANTE: 
+  [[[from sklearn.linear_model import LinearRegression]]]
+
+Primero puedes crear un LinearRegression modelo, y luego ajuste a su x y y datos:
+
+  line_fitter = LinearRegression()
+  line_fitter.fit(X, y)
+
+El .fit() le da el modelo dos variables eso nos es útil:
+
+el line_fitter.coef_, que contiene la pendiente
+el line_fitter.intercept_, que contiene la intercepción
+
+También podemos usar el .predict() función para pasar en x-valores y recibir los y-valores que esta línea predeciría:
+
+  [[[y_predicted = line_fitter.predict(X)]]]
+
+
+
+EJEMPLO :
+    import codecademylib3_seaborn
+    from sklearn.linear_model import LinearRegression
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    temperature = np.array(range(60, 100, 2))
+    temperature = temperature.reshape(-1, 1)
+    sales = [65, 58, 46, 45, 44, 42, 40, 40, 36, 38, 38, 28, 30, 22, 27, 25, 25, 20, 15, 5]
+
+    plt.plot(temperature, sales, 'o')
+
+    line_fitter = LinearRegression()
+    line_fitter.fit(temperature, sales)
+    sales_predict = line_fitter.predict(temperature)
+
+    plt.plot(temperature, sales_predict)
+
+    plt.show()
